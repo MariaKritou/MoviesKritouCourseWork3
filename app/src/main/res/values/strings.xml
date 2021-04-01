@@ -1,0 +1,34 @@
+<resources>
+
+    <string name="app_name">MoviesKritou</string>
+    <string name="movies_app_title">Movies App</string>
+    <string name="developer_name">Maria kritou</string>
+    <string name="movies">Movies</string>
+
+    <!-- Movie Details : JUJUTSU KAISEN -->
+    <string name="jujutsu_kaisen">JUJUTSU KAISEN</string>
+    <string name="juju_release_date">12/03/2020</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam.</string>
+    <!-- Movie Details : JUJUTSU KAISEN -->
+
+    <!-- Login Activity -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">Login</string>
+
+    <string name="button_login">Login</string>
+    <string name="register"><u>Not a member?</u></string>
+    <!-- Login Activity -->
+
+    <!-- ImageView descriptions -->
+    <string name="fav">fav</string>
+    <string name="poster">poster</string>
+    <string name="img">img</string>
+    <string name="star">star</string>
+    <!-- ImageView descriptions -->
+
+</resources>
