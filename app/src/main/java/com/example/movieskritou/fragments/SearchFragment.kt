@@ -1,23 +1,32 @@
 package com.example.movieskritou.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.movieskritou.R
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlin.collections.ArrayList
 
 class SearchFragment : Fragment() {
+
+    private var movies: ArrayList<String> ? = null
+    private var arrayAdapter: ArrayAdapter<String> ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
@@ -25,29 +34,57 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val movie = listOf<String>("Click to select movie","AOT", "ONE PIECE", "JUJUTSU KAISEN", "SAO", "BLACK CLOVER", "NARUTO")
-        val arrayAdapter = activity?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, movie) }
+        movies = ArrayList()
+        autocomplete.threshold = 3
 
-        arrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner?.adapter = arrayAdapter
+        autocomplete.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-                when(parent?.getItemAtPosition(position).toString()){
-                    "AOT" -> search_fav.setBackgroundResource(R.drawable.aot)
-                    "ONE PIECE" -> search_fav.setBackgroundResource(R.drawable.onep)
-                    "BLACK CLOVER" -> search_fav.setBackgroundResource(R.drawable.blackcl)
-                    "SAO" -> search_fav.setBackgroundResource(R.drawable.sao)
-                    "JUJUTSU KAISEN" -> search_fav.setBackgroundResource(R.drawable.juju)
-                    "NARUTO" -> search_fav.setBackgroundResource(R.drawable.naruto)
-                    else -> search_fav.setBackgroundResource(R.drawable.linear_grad)
+                //Empty the list before filling it again
+               if (!movies.isNullOrEmpty()){
+                    movies?.clear()
                 }
+
+                //Fill dropdown list
+                setDataList(s)
             }
-        }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
     }
+
+    private fun setDataList(title: CharSequence?): Void?{
+
+        var queue = Volley.newRequestQueue(activity)
+
+        // The url needs a query with the text given in EditText, i used string concatenation
+        val url = "https://api.themoviedb.org/3/search/movie?api_key=9460908ad9c98b66c0024f11d4bc9bae&query="
+        var query = url.plus(title)
+
+        Log.d("QUERY-URL", query)
+
+        val jsonObjectRequest = JsonObjectRequest(
+                Request.Method.GET, query,null,
+                Response.Listener { response ->
+
+                    val jsonArray = response.getJSONArray("results")
+                    for(i in 0 until jsonArray.length()) {
+
+                        val item = jsonArray.getJSONObject(i)
+                        movies?.add(item.getString("original_title"))
+                    }
+                    arrayAdapter = activity?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, movies!!) }
+                    autocomplete.setAdapter(arrayAdapter)
+                    arrayAdapter?.notifyDataSetChanged()
+                },
+                Response.ErrorListener { Log.d("API", "that didn't work") })
+
+        queue.add(jsonObjectRequest)
+        return null
+    }
+
 }

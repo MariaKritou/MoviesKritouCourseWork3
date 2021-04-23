@@ -9,22 +9,19 @@
     <LinearLayout
         android:id="@+id/search_fav"
 
+        android:background="@drawable/linear_grad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <Spinner
-            android:id="@+id/spinner"
-
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="@dimen/padd_32"
-            android:layout_marginRight="@dimen/padd_32"
-            android:layout_marginTop="90dp"
-
-            android:background="@drawable/spinner"
-            android:padding="10dp"
-            tools:ignore="MissingConstraints" />
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:hint="@string/type_a_movie"
+         />
 
     </LinearLayout>
 

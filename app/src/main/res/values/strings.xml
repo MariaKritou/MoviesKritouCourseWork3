@@ -29,6 +29,9 @@
     <string name="poster">poster</string>
     <string name="img">img</string>
     <string name="star">star</string>
+    <string name="rating">Rating:</string>
+    <string name="movierate">movierate</string>
+    <string name="type_a_movie">Type a movie</string>
     <!-- ImageView descriptions -->
 
 </resources>

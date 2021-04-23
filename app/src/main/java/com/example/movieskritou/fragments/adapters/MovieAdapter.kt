@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.movieskritou.Item
 import com.example.movieskritou.R
-import com.google.android.material.card.MaterialCardView
+import com.squareup.picasso.Picasso
 
 class MovieAdapter(var context:Context, var arrayList:ArrayList<Item>) : BaseAdapter(){
 
@@ -19,11 +18,14 @@ class MovieAdapter(var context:Context, var arrayList:ArrayList<Item>) : BaseAda
 
         val view:View = View.inflate(context, R.layout.card_item, null)
         val icons:ImageView = view.findViewById(R.id.icons)
-        //val names:TextView = view.findViewById(R.id.name_text_view)
+        val rating: TextView = view.findViewById(R.id.rating)
+
         val listitem : Item = arrayList.get(position)
 
-        icons.setImageResource(listitem.image!!)
-        //names.text = listitem.name
+        // Images give path in the json i display them using picasso
+        val picasso = Picasso.get()
+        picasso.load(listitem.image!!).into(icons)
+        rating.text = listitem.vote.toString()
 
         return view
     }

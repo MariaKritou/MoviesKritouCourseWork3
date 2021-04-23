@@ -28,56 +28,34 @@
             android:layout_marginStart="5dp"
             android:contentDescription="@string/poster" />
 
-     <!--   <TextView
+       <TextView
             android:id="@+id/name_text_view"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_below="@+id/icons"
-
-            android:text="@string/movies"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:textStyle="bold" />-->
-
-        <ImageView
-            android:id="@+id/star"
-
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/icons"
             android:layout_marginLeft="25dp"
             android:layout_marginStart="25dp"
+            android:layout_below="@+id/icons"
 
-            android:background="@drawable/ic_baseline_star_24"
+            android:text="@string/rating"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/rating"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icons"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+
+            android:text="@string/movierate"
             android:contentDescription="@string/star"
-             />
+            android:layout_toRightOf="@+id/name_text_view"
+            android:layout_toEndOf="@+id/name_text_view" />
 
-        <ImageView
-            android:id="@+id/star_half"
-
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/icons"
-            android:layout_toRightOf="@+id/star"
-            android:layout_toEndOf="@+id/star"
-
-            android:background="@drawable/ic_baseline_star_half_24"
-            android:contentDescription="@string/star" />
-
-        <ImageView
-            android:id="@+id/star_border"
-
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/icons"
-            android:layout_toRightOf="@+id/star_half"
-            android:layout_toEndOf="@+id/star_half"
-
-            android:background="@drawable/ic_baseline_star_border_24"
-            android:contentDescription="@string/star" />
 
     </RelativeLayout>
 

@@ -1,7 +1,11 @@
 package com.example.movieskritou
 
-class Item(name: String, image: Int) {
+public class Item(name: String, image: String,imageBack: String, vote: Double, releaseDate: String, overview: String) {
 
     var name:String? = name
-    var image: Int? = image
+    var image: String? = image
+    var imageBack: String? = imageBack
+    var vote: Double = vote
+    var releaseDate: String = releaseDate
+    var overview: String = overview
 }

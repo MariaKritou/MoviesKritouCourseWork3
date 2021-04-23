@@ -2,44 +2,38 @@ package com.example.movieskritou
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie_details.*
 
 class MovieDetails : AppCompatActivity() {
 
-    private var profileName: String = ""
+    private var movieTitle: String = ""
+    private var moviePoster: String = ""
+    private var moviePoster2: String = ""
+    private var movieVote: Double? = null
+    private var movieRelease: String = ""
+    private var movieOverview: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-        //Get the name of the movie clicked, that was passed from the intent
-        profileName = intent.getStringExtra("MovieName").toString()
+        //Get the data of the movie clicked, that was passed from the intent
+        movieTitle = intent.getStringExtra("MovieName").toString()
+        moviePoster = intent.getStringExtra("MoviePoster").toString()
+        moviePoster2 = intent.getStringExtra("MoviePoster2").toString()
+        movieVote = intent.getDoubleExtra("MovieRate", 0.0)
+        movieRelease = intent.getStringExtra("MovieRelease").toString()
+        movieOverview = intent.getStringExtra("MovieOverview").toString()
 
-        //Set image/title/favorite icon on page
-        when(profileName){
-            "AOT" -> {details_img.setBackgroundResource(R.drawable.aot);
-                      movie_title.text = "AOT";
-                      fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_24)}
+        movie_title.text = movieTitle
+        release_date.text = movieRelease
+        avg_rate.text = movieVote.toString()
+        synopsis.text = movieOverview
 
-            "JUJUTSU KAISEN" -> {details_img.setBackgroundResource(R.drawable.juju);
-                                 movie_title.text = "JUJUTSU KAISEN";
-                                 fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24) }
-
-            "NARUTO" -> {details_img.setBackgroundResource(R.drawable.naruto);
-                         movie_title.text = "NARUTO";
-                         fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_24)}
-
-            "SAO" -> {details_img.setBackgroundResource(R.drawable.sao);
-                      movie_title.text = "SAO";
-                      fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)}
-
-            "BLACK CLOVER" -> {details_img.setBackgroundResource(R.drawable.blackcl);
-                               movie_title.text = "BLACK CLOVER";
-                               fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24) }
-
-            else -> {details_img.setBackgroundResource(R.drawable.onep);
-                     movie_title.text = "ONE PIECE";
-                     fav_details.setBackgroundResource(R.drawable.ic_baseline_favorite_24) }
-        }
+        // The images in json are given as a path so i display them using picasso
+        val picasso = Picasso.get()
+        picasso.load(moviePoster2).into(details_img)
+        picasso.load(moviePoster).into(small_img)
     }
 }

@@ -1,7 +1,7 @@
 package com.example.movieskritou
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.movieskritou.fragments.FavoritesFragment
 import com.example.movieskritou.fragments.HomeFragment
 import com.example.movieskritou.fragments.SearchFragment
@@ -21,16 +21,18 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
 
-        adapter.addFragment(HomeFragment(), "Home")
-        adapter.addFragment(FavoritesFragment(), "Favorites")
+        // Titles of tabs
+        adapter.addFragment(HomeFragment(), "Popular")
+        adapter.addFragment(FavoritesFragment(), "Playing")
         adapter.addFragment(SearchFragment(), "Search")
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
-        //Instead of titles we use icons for the tabs
+        // Icons for the tabs
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_baseline_home_24)
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_baseline_favorite_24)
         tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_search_24)
     }
+
 }
