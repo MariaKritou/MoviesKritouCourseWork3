@@ -11,26 +11,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/details_img"
+        <ImageView
+            android:id="@+id/details_img"
 
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
 
-        android:contentDescription="@string/img" />
+            android:contentDescription="@string/img" />
 
-    <RelativeLayout
+
+        <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/small_img"
+            <ImageView
+                android:id="@+id/small_img"
 
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-android:layout_marginTop="250dp"
-        android:layout_marginLeft="20dp"
-        android:contentDescription="@string/img" />
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="250dp"
+                android:layout_marginLeft="20dp"
+                android:contentDescription="@string/img"
+                android:layout_marginStart="20dp" />
+
+            <ImageView
+                android:id="@+id/fav_details"
+
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_margin="15dp"
+
+                android:background="@drawable/ic_baseline_favorite_24"
+                android:contentDescription="@string/fav"
+                app:backgroundTint="#BA1141" />
+
+
 
     <TextView
         android:id="@+id/rate_details"
@@ -43,8 +58,7 @@ android:layout_marginTop="250dp"
 
         android:layout_toRightOf="@+id/small_img"
         android:textColor="@color/background_blue2"
-
-        />
+        android:layout_toEndOf="@+id/small_img" />
 
         <TextView
             android:id="@+id/avg_rate"
@@ -57,8 +71,7 @@ android:layout_marginTop="250dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="370dp"
 
-
-            android:text="@string/juju_release_date"
+            android:text="7"
             android:textSize="23sp"
             android:textColor="#838688"
             />
@@ -71,19 +84,21 @@ android:layout_marginTop="250dp"
             android:layout_toRightOf="@+id/small_img"
             android:layout_marginTop="410dp"
 
-
             android:text="@string/juju_release_date"
             android:textSize="23sp"
             android:textColor="#838688"
-            />
-</RelativeLayout>
+            android:layout_toEndOf="@+id/small_img" />
+
+
+
+        </RelativeLayout>
+
     </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp" >
-
 
     <TextView
         android:id="@+id/movie_title"
@@ -95,20 +110,7 @@ android:layout_marginTop="250dp"
         android:textSize="28sp"
         android:textColor="@color/white" />
 
-        <ImageView
-            android:id="@+id/fav_details"
-
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="350dp"
-            android:layout_marginStart="350dp"
-
-            android:background="@drawable/ic_baseline_favorite_24"
-            app:backgroundTint="#BA1141"
-            android:contentDescription="@string/fav" />
-
     </RelativeLayout>
-
 
     <TextView
         android:id="@+id/synopsis"
@@ -122,5 +124,33 @@ android:layout_marginTop="250dp"
         android:text="@string/lorem"
         android:textSize="20sp"
         android:textColor="#ECE7E7" />
+
+    <TextView
+        android:id="@+id/cast_word"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Cast: "
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="italic"
+        android:textColor="#838688" />
+
+    <TextView
+        android:id="@+id/cast"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+
+        android:text="@string/lorem"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="#838688" />
 
 </LinearLayout>

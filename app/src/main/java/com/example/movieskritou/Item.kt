@@ -1,7 +1,12 @@
 package com.example.movieskritou
 
-public class Item(name: String, image: String,imageBack: String, vote: Double, releaseDate: String, overview: String) {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "movies_table")
+public class Item(id:Int, name: String, image: String,imageBack: String, vote: Double, releaseDate: String, overview: String) {
+
+    @PrimaryKey(autoGenerate = false) var id: Int = id
     var name:String? = name
     var image: String? = image
     var imageBack: String? = imageBack

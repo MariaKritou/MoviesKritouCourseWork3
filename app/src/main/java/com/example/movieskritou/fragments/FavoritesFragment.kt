@@ -76,12 +76,13 @@ class FavoritesFragment : Fragment(), AdapterView.OnItemClickListener {
                     var image_back = item.getString("backdrop_path")
                     var image2 = imgurl.plus(image_back)
 
+                    var id = item.getInt("id")
                     var title = item.getString("original_title")
                     var vote = item.getDouble("vote_average")
                     var overview = item.getString("overview")
                     var released = item.getString("release_date")
 
-                    arrayList?.add(Item(title, image, image2, vote, released, overview))
+                    arrayList?.add(Item(id, title, image, image2, vote, released, overview))
                 }
                 movieAdapter?.notifyDataSetChanged()
             },
@@ -100,14 +101,7 @@ class FavoritesFragment : Fragment(), AdapterView.OnItemClickListener {
         Toast.makeText(activity, items.name, Toast.LENGTH_LONG).show()
 
         val intent = Intent(activity, MovieDetails::class.java)
-        intent.putExtra("MovieName", items.name)
-        intent.putExtra("MovieName", items.name)
-        intent.putExtra("MoviePoster", items.image)
-        intent.putExtra("MoviePoster2", items.imageBack)
-        intent.putExtra("MovieRate", items.vote)
-        intent.putExtra("MovieRelease", items.releaseDate)
-        intent.putExtra("MovieOverview", items.overview)
-
+        intent.putExtra("MovieId",items.id)
         startActivity(intent)
     }
 }

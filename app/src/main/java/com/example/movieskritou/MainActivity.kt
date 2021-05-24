@@ -1,12 +1,14 @@
 package com.example.movieskritou
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieskritou.fragments.FavoritesFragment
 import com.example.movieskritou.fragments.HomeFragment
 import com.example.movieskritou.fragments.SearchFragment
 import com.example.movieskritou.fragments.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +17,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setUpTabs()
+        //MovieDatabase.get(application)
+
+        if(databaseFileExists()){
+            Log.d("db", "yes")
+        }
+        else
+        {
+            Log.d("db1", "no")
+
+        }
     }
 
     private fun setUpTabs() {
@@ -35,4 +47,12 @@ class MainActivity : AppCompatActivity() {
         tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_search_24)
     }
 
+    private fun databaseFileExists(): Boolean {
+        return try {
+            File(getDatabasePath("MovieDatabase").absolutePath).exists()
+
+        }catch (e: Exception){
+            false
+        }
+    }
 }
